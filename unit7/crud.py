@@ -1,20 +1,15 @@
-from extra.dataset import grades
+def insert(database, data, many=False):
+    print(data)
 
-def insert(data, many=False):
     try:
         if many:
-            print(data)
-            # result = collection.insert_one(data)
-            # return result
+            result = database.grades.insert_many(data)
+            return "grades list sucessfully inserted"
         else:
-            print(data)
-            # result = collection.insert_many(data)
-            # return result.inserted_ids
+            result = database.grades.insert_one(data)
+            return "grade sucessfully inserted"
 
 
     except Exception as e:
         raise Exception(
             "The following error occurred: ", e)
-
-insert(grades[0])
-insert(grades, many=True)

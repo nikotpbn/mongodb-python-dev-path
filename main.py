@@ -21,13 +21,21 @@ def unit6_crud():
 
 
 def unit7_crud():
-    # database = client["training"]
-    # insert(database, grades[0])
-    # insert(database, grades, many=True)
+    database = client["training"]
+    insert(database, grades[0])
+    insert(database, grades, many=True)
 
     database = client["sample_training"]
-    find(database, {"_id": ObjectId("5c8eccc1caa187d17ca6ed16")})
-    find(database, {"city": {"$in": ["PHOENIX", "CHICAGO"]}})
+    collection = database["zips"]
+    find(collection, {"_id": ObjectId("5c8eccc1caa187d17ca6ed16")})
+    find(collection, {"city": {"$in": ["PHOENIX", "CHICAGO"]}})
+
+    database = client["sample_supplies"]
+    collection = database["sales"]
+    find(collection, {"items.price": {"$gt": 50}})
+    find(collection, {"items.price": {"$lt": 50}})
+    find(collection, {"customer.age": {"$lte": 65}})
+    find(collection, {"customer.age": {"$gte": 65}})
 
 
 # unit6_crud()

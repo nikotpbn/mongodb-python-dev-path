@@ -12,8 +12,8 @@ def insert(database, data, many=False):
         raise Exception(
             "The following error occurred: ", e)
 
-def find(db, filter):
-    for zip in db.zips.find(filter):
-        print(zip)
+def find(collection, filter):
+    for item in collection.find(filter):
+        print(item)
 
     return None

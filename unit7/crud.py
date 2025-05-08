@@ -1,6 +1,4 @@
 def insert(database, data, many=False):
-    print(data)
-
     try:
         if many:
             result = database.grades.insert_many(data)
@@ -13,3 +11,9 @@ def insert(database, data, many=False):
     except Exception as e:
         raise Exception(
             "The following error occurred: ", e)
+
+def find(db, filter):
+    for zip in db.zips.find(filter):
+        print(zip)
+
+    return None

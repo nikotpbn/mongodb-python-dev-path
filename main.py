@@ -1,11 +1,13 @@
-from bson.objectid import ObjectId
+from datetime import datetime
 
+from bson.objectid import ObjectId
 
 from util.connection import get_connection
 from extra.dataset import post, grades
 
 from unit6.crud import create, read, update, delete
 from unit7.crud import insert, find
+from unit8.crud import replace, insert8
 
 client = get_connection()
 
@@ -81,6 +83,35 @@ def unit7_crud():
         },
     )
 
+def unit8_crud():
+    database = client["training"]
+    collection = database["books"]
+
+    result = collection.find_one({ "_id": ObjectId("681df7ae0655443d693d1785")})
+
+    if not result:
+        data = {
+            "_id": ObjectId("681df7ae0655443d693d1785"),
+            "title": "Deep Dive Into React Hooks",
+            "ISBN": "00000000",
+            "thumbnailUrl": "",
+            "publicationDate": datetime(2019,1,1),
+            "authors":["Ada Lovelace"]
+        }
+
+        insert8(collection, data)
+
+    filter = { "_id": ObjectId("681df7ae0655443d693d1785")}
+    data = {
+        "title": "Deep Dive into React Hooks",
+        "ISBN": "0-3182-1299-4",
+        "thumbnailUrl": "http://via.placeholder.com/640x360",
+        "publicationDate": datetime(2022,7,28),
+        "authors":["Ada Lovelace"]
+    }
+
+    replace(collection, filter, data)
 
 # unit6_crud()
 # unit7_crud()
+unit8_crud()

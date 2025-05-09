@@ -57,6 +57,30 @@ def unit7_crud():
         },
     )
 
+    database = client["sample_training"]
+    collection = database["routes"]
+
+    # AND operator
+    explicit_and_query = {
+        "$and": [{"airline.name": "Southwest Airlines"}, {"stops": {"$gte": 1}}]
+    }
+    implicit_and_query = {"airline.name": "Southwest Airlines", "stops": {"$gte": 1}}
+    find(collection, implicit_and_query)
+
+    # OR operator
+    find(collection, {"$or": [{"dst_airport": "SEA"}, {"src_airport": "SEA"}]})
+
+    # Nested logical
+    find(
+        collection,
+        {
+            "$and": [
+                {"$or": [{"dst_airport": "SEA"}, {"src_airport": "SEA"}]},
+                {"$or": [{"airline.name": "American Airlines"}, {"airplane": 320}]},
+            ]
+        },
+    )
+
 
 # unit6_crud()
-unit7_crud()
+# unit7_crud()

@@ -37,6 +37,26 @@ def unit7_crud():
     find(collection, {"customer.age": {"$lte": 65}})
     find(collection, {"customer.age": {"$gte": 65}})
 
+    database = client["sample_analytics"]
+    collection = database["accounts"]
+    find(collection, {"products": "InvestmentStock"})
+    find(collection, {"products": {"$elemMatch": {"$eq": "InvestmentStock"}}})
+
+    database = client["sample_supplies"]
+    collection = database["sales"]
+    find(
+        collection,
+        {
+            "items": {
+                "$elemMatch": {
+                    "name": "laptop",
+                    "price": {"$gt": 800},
+                    "quantity": {"$gt": 1},
+                }
+            }
+        },
+    )
+
 
 # unit6_crud()
 unit7_crud()

@@ -7,7 +7,7 @@ from extra.dataset import post, grades
 
 from unit6.crud import create, read, update, delete
 from unit7.crud import insert, find
-from unit8.crud import replace, insert8
+from unit8.crud import replace, insert8, update8
 
 client = get_connection()
 
@@ -83,11 +83,12 @@ def unit7_crud():
         },
     )
 
+
 def unit8_crud():
     database = client["training"]
     collection = database["books"]
 
-    result = collection.find_one({ "_id": ObjectId("681df7ae0655443d693d1785")})
+    result = collection.find_one({"_id": ObjectId("681df7ae0655443d693d1785")})
 
     if not result:
         data = {
@@ -95,22 +96,55 @@ def unit8_crud():
             "title": "Deep Dive Into React Hooks",
             "ISBN": "00000000",
             "thumbnailUrl": "",
-            "publicationDate": datetime(2019,1,1),
-            "authors":["Ada Lovelace"]
+            "publicationDate": datetime(2019, 1, 1),
+            "authors": ["Ada Lovelace"],
         }
 
         insert8(collection, data)
 
-    filter = { "_id": ObjectId("681df7ae0655443d693d1785")}
+    filter = {"_id": ObjectId("681df7ae0655443d693d1785")}
     data = {
         "title": "Deep Dive into React Hooks",
         "ISBN": "0-3182-1299-4",
         "thumbnailUrl": "http://via.placeholder.com/640x360",
-        "publicationDate": datetime(2022,7,28),
-        "authors":["Ada Lovelace"]
+        "publicationDate": datetime(2022, 7, 28),
+        "authors": ["Ada Lovelace"],
     }
 
     replace(collection, filter, data)
+
+    database = client["audio"]
+    collection = database["podcasts"]
+
+    result = collection.find_one({"_id": ObjectId("681dfe8cfaa229a6dc62f37c")})
+
+    if not result:
+        data = {
+            "_id": ObjectId("681dfe8cfaa229a6dc62f37c"),
+            "title": "The MongoDB Podcast",
+            "year": "2022",
+            "premium_subs": "",
+            "downloads": 2,
+            "podcasts_type": "audio",
+        }
+
+        insert8(collection, data)
+
+    filter = {"_id": ObjectId("681dfe8cfaa229a6dc62f37c")}
+    update8(collection, filter, {"$set": {"subscribers": 98562}}, upsert=False)
+    update8(
+        collection,
+        {"title": "The Developer Hub"},
+        {"$set": {"topics": ["databases", "MongoDB"]}},
+        upsert=True,
+    )
+    update8(
+        collection,
+        {"title": "The MongoDB Podcast"},
+        {"$push": {"hosts": "Nic Raboy"}},
+        upsert=False,
+    )
+
 
 # unit6_crud()
 # unit7_crud()

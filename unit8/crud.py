@@ -19,3 +19,13 @@ def replace(collection, filter, data, many=False):
     except Exception as e:
         raise Exception(
             "The following error occurred: ", e)
+
+def update8(collection, filter, data, upsert):
+    try:
+        result = collection.update_one(filter, data, upsert)
+        return "data sucessfully updated"
+
+
+    except Exception as e:
+        raise Exception(
+            "The following error occurred: ", e)

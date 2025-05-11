@@ -145,6 +145,13 @@ def unit8_crud():
         upsert=False,
     )
 
+    print(
+        collection.find_one_and_update(
+            {"_id": ObjectId("681dfe8cfaa229a6dc62f37c")},
+            {"$inc": {"downloads": 1}},
+        )
+    )
+
 
 # unit6_crud()
 # unit7_crud()

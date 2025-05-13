@@ -1,13 +1,14 @@
+import pprint
 from datetime import datetime
 
 from bson.objectid import ObjectId
 
 from util.connection import get_connection
-from extra.dataset import post, grades
+from extra.dataset import post, grades, books, podcasts
 
 from unit6.crud import create, read, update, delete
 from unit7.crud import insert, find
-from unit8.crud import replace, insert8, update8
+from unit8.crud import replace, insert8, update8, find8
 
 client = get_connection()
 
@@ -151,6 +152,36 @@ def unit8_crud():
             {"$inc": {"downloads": 1}},
         )
     )
+
+    database = client["training"]
+    collection = database["books"]
+
+    result = find8(collection, {"title": "MongoDB in Action"})
+    if not result:
+        result = collection.insert_many(books)
+
+    # # Test to check if documents are inserted correctly
+    # result = collection.find({"publishedDate": {"$lt": datetime(2019, 1, 1)}})
+    # try:
+    #     r = [x for x in result]
+    #     pprint.pp(r)
+    # except Exception as e:
+    #     print(e)
+
+    # result = collection.update_many(
+    #     {"publishedDate": {"$lt": datetime(2019, 1, 1)}}, {"$set": {"status": "LEGACY"}}
+    # )
+
+    database = client["audio"]
+    collection = database["podcasts"]
+
+    # collection.insert_many(podcasts)
+
+    result = collection.delete_one({"_id": ObjectId("68237ae23934ecd422a6dddd")})
+    print(result)
+
+    result = collection.delete_many({"category": "crime"})
+    print(result)
 
 
 # unit6_crud()

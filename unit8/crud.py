@@ -1,3 +1,17 @@
+def find8(collection, filter):
+    try:
+            cursor = collection.find(filter)
+            result = []
+            for item in cursor:
+                result.append(item)
+            return result
+
+    except Exception as e:
+        raise Exception(
+            "The following error occurred: ", e)
+
+
+
 def insert8(collection, data):
     try:
             result = collection.insert_one(data)

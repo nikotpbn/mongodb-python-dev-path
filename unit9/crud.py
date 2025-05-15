@@ -25,7 +25,7 @@ def unit9(client):
     List the top three  music companies that have the most number of employees
     In this case to also project the results
     """
-    print("top three  music companies that have the most number of employees")
+    print("Top three  music companies that have the most number of employees")
     cursor = (
         db.companies.find(
             {"category_code": "music"}, {"_id": 0, "name": 1, "number_of_employees": 1}
@@ -54,3 +54,11 @@ def unit9(client):
         {"_id": 0, "address.zip": 0, "date": 0},
     )
     print_result(cursor)
+
+    """
+    Counting Documents
+    """
+    cursor = db.trips.count_documents({})
+    print(cursor)
+    cursor = db.trips.count_documents({"tripduration": {"$gt": 120}, "usertype": "Subscriber"})
+    print(cursor)

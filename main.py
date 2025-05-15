@@ -1,4 +1,3 @@
-import pprint
 from datetime import datetime
 
 from bson.objectid import ObjectId
@@ -9,6 +8,7 @@ from extra.dataset import post, grades, books, podcasts
 from unit6.crud import create, read, update, delete
 from unit7.crud import insert, find
 from unit8.crud import replace, insert8, update8, find8
+from unit9.crud import unit9
 
 client = get_connection()
 
@@ -184,6 +184,10 @@ def unit8_crud():
     print(result)
 
 
+unit9(client)
+
+
 # unit6_crud()
 # unit7_crud()
-unit8_crud()
+# unit8_crud()
+

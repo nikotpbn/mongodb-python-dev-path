@@ -3,6 +3,31 @@ from bson.decimal128 import Decimal128
 
 import datetime
 
+transactions = [
+    {
+        "_id": ObjectId("6825f06998552c2e961fb3aa"),
+        "account_holder": "Coskim Demirbas",
+        "account_id": "MDB574189300",
+        "account_type": "checking",
+        "balance": 4690.87,
+        "transfers_complete": [
+            "TR488315128",
+            "TR401633822"
+        ]
+    },
+    {
+        "_id": ObjectId("6825f06998552c2e961fb3aa"),
+        "account_holder": "Marcus Jorgensen",
+        "account_id": "MD009122931",
+        "account_type": "checking",
+        "balance": 2522.14,
+        "transfers_complete": [
+            "TR488315128",
+            "TR655897500"
+        ]
+    },
+]
+
 new_document = {
     "account_holder": "Addison Shelton",
     "account_id": "MD981234897",

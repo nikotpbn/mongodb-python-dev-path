@@ -39,3 +39,12 @@ def unit11(client):
         ]
     )
     pprint.pp([x for x in result])
+
+    result = client.sample_training.zips.aggregate(
+        [
+            { "$group": { "_id": "$state", "total_pop": { "$sum": "$pop" } } },
+            { "$match": { "total_pop": { "$lt": 1000000 } } },
+            { "$out": "small_states" }
+        ]
+    )
+    pprint.pp([x for x in result])

@@ -10,6 +10,7 @@ from unit7.crud import insert, find
 from unit8.crud import replace, insert8, update8, find8
 from unit9.crud import unit9
 from unit10.crud import unit10
+from unit11.crud import unit11
 
 client = get_connection()
 
@@ -184,12 +185,9 @@ def unit8_crud():
     result = collection.delete_many({"category": "crime"})
     print(result)
 
-
-# unit9(client)
-unit10(client)
-
-
 # unit6_crud()
 # unit7_crud()
 # unit8_crud()
-
+# unit9(client)
+# unit10(client)
+unit11(client)

@@ -9,6 +9,7 @@ from unit6.crud import create, read, update, delete
 from unit7.crud import insert, find
 from unit8.crud import replace, insert8, update8, find8
 from unit9.crud import unit9
+from unit10.crud import unit10
 
 client = get_connection()
 
@@ -184,7 +185,8 @@ def unit8_crud():
     print(result)
 
 
-unit9(client)
+# unit9(client)
+unit10(client)
 
 
 # unit6_crud()

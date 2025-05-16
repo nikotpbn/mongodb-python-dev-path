@@ -18,3 +18,24 @@ def unit11(client):
         ]
     )
     pprint.pp([x for x in result])
+
+    result = client.sample_training.zips.aggregate(
+        [{"$project": {"stage": 1, "zip": 1, "population": "$pop", "_id": 0}}]
+    )
+    pprint.pp([x for x in result])
+
+    result = client.sample_training.zips.aggregate(
+        [
+            { "$set": {
+                "pop_2022": { "$round": { "$multiply": [ 1.0031, "$pop"] } }
+            } }
+        ]
+    )
+    pprint.pp([x for x in result])
+
+    result = client.sample_training.zips.aggregate(
+        [
+            { "$count": "total_zips" }
+        ]
+    )
+    pprint.pp([x for x in result])

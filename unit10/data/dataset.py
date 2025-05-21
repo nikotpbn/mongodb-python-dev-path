@@ -10,10 +10,7 @@ transactions = [
         "account_id": "MDB574189300",
         "account_type": "checking",
         "balance": 4690.87,
-        "transfers_complete": [
-            "TR488315128",
-            "TR401633822"
-        ]
+        "transfers_complete": ["TR488315128", "TR401633822"],
     },
     {
         "_id": ObjectId("6825f06998552c2e961fb3aa"),
@@ -21,10 +18,7 @@ transactions = [
         "account_id": "MD009122931",
         "account_type": "checking",
         "balance": 2522.14,
-        "transfers_complete": [
-            "TR488315128",
-            "TR655897500"
-        ]
+        "transfers_complete": ["TR488315128", "TR655897500"],
     },
 ]
 
@@ -88,6 +82,7 @@ new_accounts = [
         "last_updated": datetime.datetime.now(),
     },
     {
+        "_id": ObjectId("682a14aecfb8bb6ae527476b"),
         "account_id": "MDB156014571",
         "account_holder": "Adelen Værnes",
         "account_type": "savings",
@@ -100,6 +95,7 @@ new_accounts = [
         ],
     },
     {
+        "_id": ObjectId("682a14aecfb8bb6ae527476c"),
         "account_id": "MDB190468049",
         "account_holder": "Louis Lewis",
         "account_type": "savings",
@@ -113,6 +109,7 @@ new_accounts = [
         ],
     },
     {
+        "_id": ObjectId("682a14aecfb8bb6ae527476d"),
         "account_id": "MDB870205338",
         "account_holder": "Juan Perez",
         "account_type": "checking",
@@ -123,6 +120,17 @@ new_accounts = [
             "TR391563093",
             "TR464853424",
             "TR922604241",
+        ],
+    },
+    {
+        "_id": ObjectId("682a14aecfb8bb6ae527476e"),
+        "account_id": "MDB310054629",
+        "account_holder": "Puja Barbier",
+        "account_type": "savings",
+        "balance": Decimal128("3977.14"),
+        "transfers_complete": [
+            "TR636449909",
+            "TR369704039",
         ],
     },
 ]

@@ -44,5 +44,15 @@ def unit13(client):
     # )
     # pprint.pp(result)
 
+    """
+    Confirm that there no index in the accounts field, since the winning plan will be
+    a COLLECTION SCAN
+    """
+    # result = ExplainableCollection(customers_collection).find({ "accounts": "871666" })
+    # pprint.pp(result)
+
+    result = customers_collection.create_index({ "accounts": 1 })
+    print(result)
+
     result = ExplainableCollection(customers_collection).find({ "accounts": "871666" })
     pprint.pp(result)

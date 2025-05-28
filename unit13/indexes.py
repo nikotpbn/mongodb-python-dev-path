@@ -100,3 +100,27 @@ def unit13(client):
         sort=[("birthdate", -1), ("name", 1)],
     )
     # pprint.pp(result)
+
+    result = customers_collection.list_indexes()
+    # pprint.pp([index for index in result])
+
+    """
+    TODO: Couldn't find a wait to perform the hideIndex method specified
+    in the course.
+    """
+    # result = customers_collection.hide_index('active_1_birthdate_-1_name_1')
+    # print(result)
+
+    """
+    Delete index and confirm
+    Then, delete all indexes
+    """
+    result = customers_collection.drop_index('active_1_birthdate_-1_name_1')
+    # print(result)
+
+    result = customers_collection.list_indexes()
+    # pprint.pp([index for index in result])
+
+    customers_collection.drop_indexes()
+    result = customers_collection.list_indexes()
+    pprint.pp([index for index in result])
